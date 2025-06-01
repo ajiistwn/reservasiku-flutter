@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    'Enjoy Your Holiday – We Ensure Your Comfort',
+                    'Explore all your dreams with peace of mind. With us guaranteed safe, easy and cheap.Enjoy your holliday we ensure your comfort.',
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.white,
@@ -108,9 +108,13 @@ class _FormReservationState extends State<FormReservation> {
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Country',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius:
+                        BorderRadius.circular(12), // Ubah radius sesuai selera
+                  ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
               ),
@@ -118,9 +122,12 @@ class _FormReservationState extends State<FormReservation> {
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'City',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
               ),
@@ -129,10 +136,13 @@ class _FormReservationState extends State<FormReservation> {
                   readOnly: true,
                   decoration: InputDecoration(
                     labelText: 'Check In',
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                     prefixIcon: Icon(Icons.calendar_today),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   controller: TextEditingController(text: _checkInDate),
@@ -170,10 +180,13 @@ class _FormReservationState extends State<FormReservation> {
                   readOnly: true,
                   decoration: InputDecoration(
                     labelText: 'Check Out',
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                     prefixIcon: Icon(Icons.calendar_today),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.cyan, width: 2.0),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   controller: TextEditingController(text: _checkOutDate),

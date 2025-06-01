@@ -10,7 +10,19 @@ class AppDrawer extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(color: Colors.cyan),
+            decoration: BoxDecoration(
+              color: Colors.cyan,
+              image: DecorationImage(
+                image:
+                    AssetImage('images/aboutImage.jpg'), // path gambar di asset
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(
+                      0.6), // Ini efek color grading (dark overlay)
+                  BlendMode.darken,
+                ),
+              ),
+            ),
             child: Text('Menu',
                 style: TextStyle(color: Colors.white, fontSize: 24)),
           ),
@@ -26,7 +38,7 @@ class AppDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.explore),
-            title: Text('Explore'),
+            title: Text('Explore Now'),
             onTap: () {
               Navigator.pushReplacement(
                 context,
@@ -36,7 +48,7 @@ class AppDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.info),
-            title: Text('About'),
+            title: Text('About Us'),
             onTap: () {
               Navigator.pushReplacement(
                 context,
