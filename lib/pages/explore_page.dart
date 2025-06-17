@@ -1,103 +1,152 @@
+// Import pustaka UI Material bawaan Flutter
 import 'package:flutter/material.dart';
-import '../app_drawer.dart';
-import './home_page.dart'; // kalau butuh kembali ke home
-import './detail_page.dart'; // kamu harus buat halaman ini
 
+// Import komponen navigasi drawer
+import '../app_drawer.dart';
+
+// Import halaman lain (jika ingin navigasi ke home atau detail properti)
+import './home_page.dart';
+import './detail_page.dart';
+
+/// Halaman Explore untuk menampilkan daftar properti berupa grid
 class ExplorePage extends StatelessWidget {
+  /// Data dummy properti
   final List<Map<String, dynamic>> properties = [
     {
-      'seed': 'villa1',
+      'seed': 'villa1', // digunakan untuk picsum.photos
       'name': 'Villa Mewah',
       'priceRange': 'Rp 1.000.000 - Rp 2.000.000',
       'roomsAvailable': 5,
       'address': 'Jl. Puncak Indah No. 1, Bogor',
     },
     {
-      'seed': 'kost2',
-      'name': 'Kost Eksklusif',
-      'priceRange': 'Rp 500.000 - Rp 700.000',
-      'roomsAvailable': 3,
-      'address': 'Jl. Melati No. 23, Jakarta',
+      'seed': 'kost1',
+      'name': 'Kost Harian Nyaman',
+      'priceRange': 'Rp 150.000 - Rp 300.000',
+      'roomsAvailable': 10,
+      'address': 'Jl. Kost Sejahtera No. 5, Jakarta',
     },
     {
-      'seed': 'apartment3',
+      'seed': 'apartemen1',
       'name': 'Apartemen Modern',
+      'priceRange': 'Rp 2.500.000 - Rp 4.000.000',
+      'roomsAvailable': 3,
+      'address': 'Jl. Apartemen Elite No. 10, Surabaya',
+    },
+    {
+      'seed': 'villa2',
+      'name': 'Villa Pantai Indah',
       'priceRange': 'Rp 1.500.000 - Rp 3.000.000',
+      'roomsAvailable': 4,
+      'address': 'Jl. Pantai No. 20, Bali',
+    },
+    {
+      'seed': 'kost2',
+      'name': 'Kost Bulanan Murah',
+      'priceRange': 'Rp 800.000 - Rp 1.200.000',
+      'roomsAvailable': 8,
+      'address': 'Jl. Kost Murah No. 15, Bandung',
+    },
+    {
+      'seed': 'apartemen2',
+      'name': 'Apartemen City View',
+      'priceRange': 'Rp 3.000.000 - Rp 5.000.000',
       'roomsAvailable': 2,
-      'address': 'Jl. Sudirman No. 45, Jakarta',
+      'address': 'Jl. City View No. 30, Yogyakarta',
+    },
+    {
+      'seed': 'villa3',
+      'name': 'Villa Alam Asri',
+      'priceRange': 'Rp 2.000.000 - Rp 3.500.000',
+      'roomsAvailable': 6,
+      'address': 'Jl. Alam Asri No. 25, Malang',
+    },
+    {
+      'seed': 'kost3',
+      'name': 'Kost Eksklusif',
+      'priceRange': 'Rp 1.000.000 - Rp 1.500.000',
+      'roomsAvailable': 7,
+      'address': 'Jl. Kost Eksklusif No. 8, Medan',
+    },
+    {
+      'seed': 'apartemen3',
+      'name': 'Apartemen Luxury',
+      'priceRange': 'Rp 4.000.000 - Rp 6.000.000',
+      'roomsAvailable': 1,
+      'address': 'Jl. Luxury No. 50, Makassar',
     },
     {
       'seed': 'villa4',
       'name': 'Villa Tropis',
-      'priceRange': 'Rp 2.500.000 - Rp 4.000.000',
+      'priceRange': 'Rp 2.500.000 - Rp 4.500.000',
+      'roomsAvailable': 3,
+      'address': 'Jl. Tropis No. 12, Lombok',
+    },
+    {
+      'seed': 'kost4',
+      'name': 'Kost Harian Strategis',
+      'priceRange': 'Rp 200.000 - Rp 400.000',
+      'roomsAvailable': 12,
+      'address': 'Jl. Kost Strategis No. 7, Semarang',
+    },
+    {
+      'seed': 'apartemen4',
+      'name': 'Apartemen Cozy',
+      'priceRange': 'Rp 2.000.000 - Rp 3.500.000',
+      'roomsAvailable': 5,
+      'address': 'Jl. Cozy No. 18, Palembang',
+    },
+    {
+      'seed': 'villa5',
+      'name': 'Villa Puncak Sejuk',
+      'priceRange': 'Rp 1.800.000 - Rp 3.200.000',
       'roomsAvailable': 4,
-      'address': 'Jl. Pantai Selatan No. 10, Bali',
+      'address': 'Jl. Puncak Sejuk No. 3, Bogor',
     },
     {
       'seed': 'kost5',
-      'name': 'Kost Nyaman',
-      'priceRange': 'Rp 400.000 - Rp 600.000',
-      'roomsAvailable': 6,
-      'address': 'Jl. Kebon Jeruk No. 12, Jakarta',
+      'name': 'Kost Bulanan Nyaman',
+      'priceRange': 'Rp 900.000 - Rp 1.300.000',
+      'roomsAvailable': 9,
+      'address': 'Jl. Kost Nyaman No. 6, Jakarta',
     },
     {
-      'seed': 'apartment6',
-      'name': 'Apartemen Mewah',
-      'priceRange': 'Rp 2.000.000 - Rp 3.500.000',
-      'roomsAvailable': 1,
-      'address': 'Jl. Thamrin No. 30, Jakarta',
-    },
-    {
-      'seed': 'villa7',
-      'name': 'Villa Alam',
-      'priceRange': 'Rp 1.200.000 - Rp 2.500.000',
-      'roomsAvailable': 3,
-      'address': 'Jl. Gunung No. 5, Bandung',
-    },
-    {
-      'seed': 'kost8',
-      'name': 'Kost Strategis',
-      'priceRange': 'Rp 300.000 - Rp 500.000',
-      'roomsAvailable': 4,
-      'address': 'Jl. Raya No. 15, Surabaya',
-    },
-    {
-      'seed': 'apartment9',
+      'seed': 'apartemen5',
       'name': 'Apartemen Elegan',
-      'priceRange': 'Rp 1.800.000 - Rp 3.200.000',
+      'priceRange': 'Rp 3.500.000 - Rp 5.500.000',
       'roomsAvailable': 2,
-      'address': 'Jl. Gatot Subroto No. 20, Jakarta',
+      'address': 'Jl. Elegan No. 22, Surabaya',
     },
-    {
-      'seed': 'villa10',
-      'name': 'Villa Pantai',
-      'priceRange': 'Rp 3.000.000 - Rp 5.000.000',
-      'roomsAvailable': 6,
-      'address': 'Jl. Pantai Barat No. 8, Bali',
-    },
+    // ... daftar properti lainnya (kost, apartemen, villa, dll)
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // AppBar bagian atas halaman
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text('Explore'),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Image.asset('images/logo.png'),
+          child: Image.asset('images/logo.png'), // logo kiri atas
         ),
         actions: [
           Builder(
             builder: (context) => IconButton(
               icon: Icon(Icons.menu),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
+              onPressed: () =>
+                  Scaffold.of(context).openEndDrawer(), // buka drawer kanan
             ),
           ),
         ],
       ),
+
+      // Drawer sisi kanan
       endDrawer: AppDrawer(),
+
+      // Body berisi grid properti
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
@@ -106,22 +155,22 @@ class ExplorePage extends StatelessWidget {
               child: GridView.builder(
                 itemCount: properties.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
+                  crossAxisCount: 2, // 2 kolom
                   mainAxisSpacing: 12,
                   crossAxisSpacing: 12,
-                  childAspectRatio: 0.9,
+                  childAspectRatio: 1, // tinggi banding lebar
                 ),
                 itemBuilder: (context, index) {
                   final property = properties[index];
                   final imageUrl =
-                      'https://picsum.photos/seed/${property['seed']}/300/200';
+                      'https://picsum.photos/seed/${property['seed']}/300/200'; // gambar dummy unik
 
                   return InkWell(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => PropertyDetailPage(),
+                          builder: (_) => PropertyDetailPage(), // harus dibuat
                         ),
                       );
                     },
@@ -135,6 +184,7 @@ class ExplorePage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // Gambar properti
                           ClipRRect(
                             borderRadius:
                                 BorderRadius.vertical(top: Radius.circular(12)),
@@ -147,23 +197,30 @@ class ExplorePage extends StatelessWidget {
                                   (context, child, loadingProgress) {
                                 if (loadingProgress == null) return child;
                                 return Center(
-                                    child: CircularProgressIndicator());
+                                  child: CircularProgressIndicator(),
+                                );
                               },
                               errorBuilder: (context, error, stackTrace) {
                                 return Container(
                                   height: 120,
                                   color: Colors.white,
-                                  child: Icon(Icons.broken_image,
-                                      size: 50, color: Colors.grey[600]),
+                                  child: Icon(
+                                    Icons.broken_image,
+                                    size: 50,
+                                    color: Colors.grey[600],
+                                  ),
                                 );
                               },
                             ),
                           ),
+
+                          // Detail info properti
                           Padding(
                             padding: const EdgeInsets.fromLTRB(8, 18, 8, 8),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                // Badge jumlah kamar
                                 Container(
                                   margin: EdgeInsets.only(bottom: 4),
                                   padding: EdgeInsets.symmetric(
@@ -180,6 +237,7 @@ class ExplorePage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+                                // Nama properti
                                 Text(
                                   property['name'],
                                   style: TextStyle(
@@ -188,13 +246,15 @@ class ExplorePage extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(height: 4),
+
+                                // Rentang harga
                                 Text(
                                   property['priceRange'],
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                  ),
+                                  style: TextStyle(fontSize: 12),
                                 ),
                                 SizedBox(height: 4),
+
+                                // Lokasi properti
                                 Row(
                                   children: [
                                     Icon(Icons.location_on,
@@ -204,8 +264,9 @@ class ExplorePage extends StatelessWidget {
                                       child: Text(
                                         property['address'],
                                         style: TextStyle(
-                                            fontSize: 11,
-                                            color: Colors.grey[700]),
+                                          fontSize: 11,
+                                          color: Colors.grey[700],
+                                        ),
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 1,
                                       ),

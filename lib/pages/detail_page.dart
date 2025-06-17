@@ -1,9 +1,13 @@
+// Import library utama Flutter untuk penggunaan widget material design
 import 'package:flutter/material.dart';
+// Import file AppDrawer untuk digunakan sebagai drawer samping
 import '../app_drawer.dart';
 
+// Komponen Stateless untuk halaman detail properti
 class PropertyDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // List fasilitas umum yang dimiliki oleh properti
     final List<String> facilities = [
       'WiFi Gratis',
       'AC',
@@ -12,6 +16,7 @@ class PropertyDetailPage extends StatelessWidget {
       'Sarapan',
     ];
 
+    // Data dummy kamar dengan nama, harga, gambar, jumlah tersedia, dan fasilitas masing-masing
     final List<Map<String, dynamic>> rooms = [
       {
         'name': 'Kamar Standard',
@@ -43,13 +48,15 @@ class PropertyDetailPage extends StatelessWidget {
     ];
 
     return Scaffold(
+      // AppBar untuk menampilkan judul halaman dan tombol menu
       appBar: AppBar(
         title: Text('Detail Properti'),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Image.asset('images/logo.png'),
+          child: Image.asset('images/logo.png'), // Logo kiri atas
         ),
         actions: [
+          // Tombol untuk membuka drawer dari sisi kanan
           Builder(
             builder: (context) => IconButton(
               icon: Icon(Icons.menu),
@@ -58,14 +65,15 @@ class PropertyDetailPage extends StatelessWidget {
           ),
         ],
       ),
-      endDrawer: AppDrawer(),
+      endDrawer: AppDrawer(), // Drawer sisi kanan (import dari app_drawer.dart)
       body: SingleChildScrollView(
+        // Membungkus isi agar bisa di-scroll
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Gambar Properti dari Picsum
+              // Gambar utama properti
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.network(
@@ -77,25 +85,25 @@ class PropertyDetailPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              // Nama Properti
+              // Nama properti
               Text(
                 'Villa Mawar Indah',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
 
-              // Deskripsi
+              // Deskripsi singkat properti
               Text(
                 'Villa Mawar Indah menawarkan pengalaman menginap mewah dengan suasana yang tenang dan pemandangan alam yang menakjubkan.',
                 style: TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 20),
 
-              // Alamat
+              // Alamat properti
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.location_on, color: Colors.red),
+                  Icon(Icons.location_on, color: Colors.red), // Ikon lokasi
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -107,12 +115,14 @@ class PropertyDetailPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              // Fasilitas
+              // Judul Fasilitas
               Text(
                 'Fasilitas',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
+
+              // Daftar fasilitas utama properti
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: facilities.map((fasilitas) {
@@ -127,12 +137,14 @@ class PropertyDetailPage extends StatelessWidget {
               ),
               const SizedBox(height: 30),
 
-              // List Room
+              // Judul Room (Kamar)
               Text(
                 'Room',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
+
+              // Daftar kamar berdasarkan data rooms
               Column(
                 children: rooms.map((room) {
                   return Card(
@@ -144,6 +156,7 @@ class PropertyDetailPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // Gambar kamar
                         ClipRRect(
                           borderRadius: const BorderRadius.vertical(
                               top: Radius.circular(12)),
@@ -159,7 +172,7 @@ class PropertyDetailPage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // Badge "Available Room"
+                              // Badge jumlah kamar yang tersedia
                               Container(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 4),
@@ -178,7 +191,8 @@ class PropertyDetailPage extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 8),
-                              // Nama Kamar
+
+                              // Nama kamar
                               Text(
                                 room['name'],
                                 style: const TextStyle(
@@ -187,7 +201,8 @@ class PropertyDetailPage extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 8),
-                              // Harga
+
+                              // Harga per malam
                               Text(
                                 '${room['price']} / malam',
                                 style: TextStyle(
@@ -196,7 +211,8 @@ class PropertyDetailPage extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 10),
-                              // List Fasilitas
+
+                              // Daftar fasilitas kamar
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -208,9 +224,8 @@ class PropertyDetailPage extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 8),
                                   Wrap(
-                                    spacing: 12, // Jarak horizontal antar item
-                                    runSpacing:
-                                        8, // Jarak vertikal antar baris jika pindah
+                                    spacing: 12,
+                                    runSpacing: 8,
                                     children: room['facilities']
                                         .map<Widget>((facility) {
                                       return Container(
@@ -243,23 +258,22 @@ class PropertyDetailPage extends StatelessWidget {
                               ),
 
                               const SizedBox(height: 12),
-                              // Tombol Pilih
+
+                              // Tombol "Pilih" untuk memilih kamar
                               Align(
                                 alignment: Alignment.centerRight,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    // Aksi ketika tombol "Pilih" ditekan
+                                    // Aksi saat tombol dipencet
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        Colors.white, // Warna background tombol
+                                    backgroundColor: Colors.white,
                                     side: const BorderSide(
-                                      color: Colors.black, // Warna border
-                                      width: 0.5, // Ketebalan border
+                                      color: Colors.black,
+                                      width: 0.5,
                                     ),
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          12), // Opsional, untuk sudut tombol
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
                                   ),
                                   child: const Text(
